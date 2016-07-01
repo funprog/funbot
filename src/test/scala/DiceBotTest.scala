@@ -7,7 +7,10 @@ class DiceBotTest extends FunSuite {
     "").foreach(x => {
     test(s"process with invalid input '$x' returns none.") {
       val expected = None
-      val actual = DiceBot.process("invalid string")
+      val sut = new DiceBot()
+
+      val actual = sut.process("invalid string")
+
       assert(expected == actual)
     }
   })

@@ -1,4 +1,4 @@
-object DiceBot {
+class DiceBot {
   /** Processes an `input` to return sequential string values
     * representing order.
     *
