@@ -1,4 +1,4 @@
-name := "dicebot"
+name := "funbot"
 
 version := "1.0"
 
