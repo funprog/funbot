@@ -5,7 +5,7 @@ class DiceBot(val random: Random) {
 
   def this() = this(new Random())
 
-  private val regex = """(?i)roll (\d)d(\d)""".r
+  private val regex = """(?i)\s*roll\s+(\d+)d(\d+)\s*""".r
 
   /** Processes an `input` to return sequential string values
     * representing order.
@@ -21,8 +21,16 @@ class DiceBot(val random: Random) {
     require(input != null, "the 'input' value cannot be null.")
 
     input match {
-      case regex(x, y) => Some("1")
-      case _ => None
+      case regex(count, max) =>
+        Some(makeOrderString(count.toInt, max.toInt))
+      case _ =>
+        None
     }
+  }
+
+  private def makeOrderString(count: Int, max: Int) = {
+    (1 to count)
+      .map(_ => random.nextInt(max.toInt) + 1)
+      .mkString(", ")
   }
 }
