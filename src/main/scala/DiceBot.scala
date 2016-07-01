@@ -5,7 +5,7 @@ class DiceBot(val random: Random) {
 
   def this() = this(new Random())
 
-  private val regex = """(?i)\s*roll\s+(\d+)d(\d+)\s*""".r
+  private lazy val regex = """(?i)\s*roll\s+(\d+)d(\d+)\s*""".r
 
   /** Processes an `input` to return sequential string values
     * representing order.
