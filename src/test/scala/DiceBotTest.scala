@@ -42,7 +42,9 @@ class DiceBotTest extends FunSuite {
   })
 
   Seq(
-    ("1d1", "1")).foreach(x => {
+    ("roll 1d1", "1"),
+    ("RoLl 1d1", "1"),
+    ("roLL 1D1", "1")).foreach(x => {
     test(s"process with input '${x._1}' returns correct result '${x._2}'.") {
       val expected = Some(x._2)
       val sut = new DiceBot()
