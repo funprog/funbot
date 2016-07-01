@@ -1,4 +1,6 @@
 class DiceBot {
+  private val regex = """(\d)d(\d)""".r
+
   /** Processes an `input` to return sequential string values
     * representing order.
     *
@@ -9,5 +11,9 @@ class DiceBot {
     * @return returns `None` if the `input` is invalid, otherwise `Some[String]`
     *         representing the order.
     */
-  def process(input: String): Option[String] = None
+  def process(input: String): Option[String] =
+    input match {
+      case regex(x, y) => Some("1")
+      case _ => None
+    }
 }
