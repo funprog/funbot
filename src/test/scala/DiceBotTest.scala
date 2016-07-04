@@ -59,16 +59,16 @@ class DiceBotTest extends FunSuite {
   Seq(
     ("roll 1d1", "1"),
     ("RoLl 1d1", "1"),
-    ("roLL 1D1", "1")).foreach(x => {
-    test(s"process with input '${x._1}' returns correct result '${x._2}'.") {
-      val expected = Some(x._2)
+    ("roLL 1D1", "1")).foreach{ case (rawInput, result) => {
+    test(s"process with input '${rawInput}' returns correct result '${result}'.") {
+      val expected = Some(result)
       val sut = new DiceBot()
 
-      val actual = sut.process(x._1)
+      val actual = sut.process(rawInput)
 
       assert(expected == actual)
     }
-  })
+  }}
 
   test("process returns correct result.") {
     // Fixture setup
