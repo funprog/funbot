@@ -20,7 +20,7 @@ class DiceBotTest extends FunSuite {
     input => {
       test(s"process with invalid input '$input' returns none.") {
         val expected = None
-        val sut = new DiceBot()
+        val sut = new DiceBot
 
         val actual = sut.process(input)
 
@@ -37,7 +37,7 @@ class DiceBotTest extends FunSuite {
     "  \r\n roll \r\n\t  2d1 \r\n ").foreach(
     input => {
       test(s"process with valid input '$input' returns some.") {
-        val sut = new DiceBot()
+        val sut = new DiceBot
         val actual = sut.process(input)
         assert(classOf[Some[String]] == actual.getClass)
       }
@@ -51,7 +51,7 @@ class DiceBotTest extends FunSuite {
     case (input, result) =>
       test(s"process with input '${input}' returns correct result '${result}'.") {
         val expected = Some(result)
-        val sut = new DiceBot()
+        val sut = new DiceBot
 
         val actual = sut.process(input)
 
