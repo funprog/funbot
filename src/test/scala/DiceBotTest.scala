@@ -7,21 +7,6 @@ class DiceBotTest extends FunSuite {
     assert(thrown != null)
   }
 
-  test("random is correct when initialized with default constructor.") {
-    val sut = new DiceBot()
-    val actual = sut.random
-    assert(classOf[Random] == actual.getClass)
-  }
-
-  test("random is correct when initialized with a random.") {
-    val expected = new Random()
-    val sut = new DiceBot(expected)
-
-    val actual = sut.random
-
-    assert(expected == actual)
-  }
-
   test("process with null input throws") {
     val thrown = intercept[IllegalArgumentException](
       new DiceBot().process(null))
