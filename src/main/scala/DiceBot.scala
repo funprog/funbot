@@ -3,8 +3,6 @@ import scala.util.Random
 class DiceBot(val random: Random) {
   require(random != null, "the 'random' value cannot be null.")
 
-  def this() = this(new Random)
-
   private lazy val regex = """(?i)\s*roll\s+(\d+)d(\d+)\s*""".r
 
   /** Processes an `input` to return sequential string values

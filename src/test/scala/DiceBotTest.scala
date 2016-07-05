@@ -9,7 +9,7 @@ class DiceBotTest extends FunSuite {
 
   test("process with null input throws") {
     val thrown = intercept[IllegalArgumentException](
-      new DiceBot().process(null))
+      new DiceBot(new Random).process(null))
     assert(thrown != null)
   }
 
@@ -20,7 +20,7 @@ class DiceBotTest extends FunSuite {
     input => {
       test(s"process with invalid input '$input' returns none.") {
         val expected = None
-        val sut = new DiceBot
+        val sut = new DiceBot(new Random)
 
         val actual = sut.process(input)
 
@@ -37,12 +37,11 @@ class DiceBotTest extends FunSuite {
     "  \r\n roll \r\n\t  2d1 \r\n ").foreach(
     input => {
       test(s"process with valid input '$input' returns some.") {
-        val sut = new DiceBot
+        val sut = new DiceBot(new Random)
         val actual = sut.process(input)
         assert(classOf[Some[String]] == actual.getClass)
       }
     })
-
 
   Seq(
     ("roll 1d1", "1"),
@@ -51,7 +50,7 @@ class DiceBotTest extends FunSuite {
     case (input, result) =>
       test(s"process with input '${input}' returns correct result '${result}'.") {
         val expected = Some(result)
-        val sut = new DiceBot
+        val sut = new DiceBot(new Random)
 
         val actual = sut.process(input)
 
