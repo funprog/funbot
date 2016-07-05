@@ -17,16 +17,16 @@ class DiceBot(val random: Random) {
     * @return returns `None` if the `input` is invalid, otherwise `Some[String]`
     *         representing the order.
     */
-  def process(input: String): Option[String] = {
-    require(input != null, "the 'input' value cannot be null.")
-
+  def process(input: String): Option[String] =
     input match {
+      case null =>
+        throw new IllegalArgumentException(
+          "the 'input' value cannot be null.")
       case regex(count, max) =>
         Some(makeOrderString(count.toInt, max.toInt))
       case _ =>
         None
     }
-  }
 
   private def makeOrderString(count: Int, max: Int) = {
     (1 to count)
