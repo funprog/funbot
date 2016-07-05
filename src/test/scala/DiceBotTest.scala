@@ -16,16 +16,17 @@ class DiceBotTest extends FunSuite {
   Seq(
     "invalid string",
     "",
-    "roll 1d").foreach(x => {
-    test(s"process with invalid input '$x' returns none.") {
-      val expected = None
-      val sut = new DiceBot()
+    "roll 1d").foreach(
+    input => {
+      test(s"process with invalid input '$input' returns none.") {
+        val expected = None
+        val sut = new DiceBot()
 
-      val actual = sut.process(x)
+        val actual = sut.process(input)
 
-      assert(expected == actual)
-    }
-  })
+        assert(expected == actual)
+      }
+    })
 
   Seq(
     "roll 1d1",
@@ -33,27 +34,30 @@ class DiceBotTest extends FunSuite {
     "roll 20000d11232",
     "roll    2d1",
     "  roll \t  2d1  ",
-    "  \r\n roll \r\n\t  2d1 \r\n ").foreach(x => {
-    test(s"process with valid input '$x' returns some.") {
-      val sut = new DiceBot()
-      val actual = sut.process(x)
-      assert(classOf[Some[String]] == actual.getClass)
-    }
-  })
+    "  \r\n roll \r\n\t  2d1 \r\n ").foreach(
+    input => {
+      test(s"process with valid input '$input' returns some.") {
+        val sut = new DiceBot()
+        val actual = sut.process(input)
+        assert(classOf[Some[String]] == actual.getClass)
+      }
+    })
+
 
   Seq(
     ("roll 1d1", "1"),
     ("RoLl 1d1", "1"),
-    ("roLL 1D1", "1")).foreach{ case (rawInput, result) => {
-    test(s"process with input '${rawInput}' returns correct result '${result}'.") {
-      val expected = Some(result)
-      val sut = new DiceBot()
+    ("roLL 1D1", "1")).foreach {
+    case (input, result) =>
+      test(s"process with input '${input}' returns correct result '${result}'.") {
+        val expected = Some(result)
+        val sut = new DiceBot()
 
-      val actual = sut.process(rawInput)
+        val actual = sut.process(input)
 
-      assert(expected == actual)
-    }
-  }}
+        assert(expected == actual)
+      }
+  }
 
   test("process returns correct result.") {
     // Fixture setup
