@@ -5,7 +5,7 @@
  2. At least 3 reviewers SHOULD approve 
   - Any one of participants shall post a comment with ```Agreed?``` header.
 
-  > #Agreed?
+  > # Agreed?
  // anything. eg. Please press like if you agree with my code.
 
  - To express an approval, press 👍 
