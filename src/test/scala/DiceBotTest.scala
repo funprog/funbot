@@ -34,7 +34,14 @@ class DiceBotTest extends FunSuite {
     "roll 20000d11232",
     "roll    2d1",
     "  roll \t  2d1  ",
-    "  \r\n roll \r\n\t  2d1 \r\n ").foreach(
+    "  \r\n roll \r\n\t  2d1 \r\n ",
+    "roll 1n1",
+    "roll 2n1",
+    "roll 20000n11232",
+    "roll    2n1",
+    "  roll \t  2n1  ",
+    "  \r\n roll \r\n\t  2n1 \r\n "
+  ).foreach(
     input => {
       test(s"process with valid input '$input' returns some.") {
         val sut = new DiceBot(new Random)
@@ -46,9 +53,13 @@ class DiceBotTest extends FunSuite {
   Seq(
     ("roll 1d1", "1"),
     ("RoLl 1d1", "1"),
-    ("roLL 1D1", "1")).foreach {
+    ("roLL 1D1", "1"),
+    ("roll 1n1", "1"),
+    ("RoLl 1n1", "1"),
+    ("roLL 1N1", "1")
+  ).foreach {
     case (input, result) =>
-      test(s"process with input '${input}' returns correct result '${result}'.") {
+      test(s"process with input '$input' returns correct result '$result'.") {
         val expected = Some(result)
         val sut = new DiceBot(new Random)
 
