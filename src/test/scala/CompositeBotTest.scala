@@ -1,5 +1,3 @@
-package com.github.funprog.funbot
-
 import org.scalatest.FunSuite
 
 class CompositeBotTest extends FunSuite {

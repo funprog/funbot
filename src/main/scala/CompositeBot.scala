@@ -1,5 +1,3 @@
-package com.github.funprog.funbot
-
 class CompositeBot(val bots: Bot*) extends Bot {
   override def process(input: String): Option[String] =
     bots.toStream.map(x => x.process(input))
