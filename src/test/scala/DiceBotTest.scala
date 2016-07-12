@@ -2,17 +2,6 @@ import org.scalatest.FunSuite
 import scala.util.Random
 
 class DiceBotTest extends FunSuite {
-  test("constructor with null random throws") {
-    val thrown = intercept[IllegalArgumentException](new DiceBot(null))
-    assert(thrown != null)
-  }
-
-  test("process with null input throws") {
-    val thrown = intercept[IllegalArgumentException](
-      new DiceBot(new Random).process(null))
-    assert(thrown != null)
-  }
-
   Seq(
     "invalid string",
     "",
