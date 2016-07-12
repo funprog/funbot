@@ -2,6 +2,11 @@ import org.scalatest.FunSuite
 import scala.util.Random
 
 class DiceBotTest extends FunSuite {
+  test("sut is Bot.") {
+    val sut = new DiceBot(new Random)
+    assert(sut.isInstanceOf[Bot])
+  }
+
   Seq(
     "invalid string",
     "",

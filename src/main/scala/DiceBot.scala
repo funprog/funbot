@@ -1,6 +1,6 @@
 import scala.util.Random
 
-class DiceBot(val random: Random) {
+class DiceBot(val random: Random) extends Bot {
   private lazy val regex = """(?i)\s*roll\s+(\d+)d(\d+)\s*""".r
 
   /** Processes an `input` to return sequential string values
