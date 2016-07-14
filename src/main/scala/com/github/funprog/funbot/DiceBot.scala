@@ -1,3 +1,5 @@
+package com.github.funprog.funbot
+
 import scala.util.Random
 
 class DiceBot(val random: Random) {

@@ -1,4 +1,7 @@
+package com.github.funprog.funbot
+
 import org.scalatest.FunSuite
+
 import scala.util.Random
 
 class DiceBotTest extends FunSuite {
