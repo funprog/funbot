@@ -4,7 +4,7 @@ class DiceBot(val random: Random) {
   require(random != null, "the 'random' value cannot be null.")
 
   private lazy val regex = """(?i)\s*roll\s+(\d+)d(\d+)\s*""".r
-  private lazy val regex_for_non_dup = """(?i)\s*roll\s+(\d+)n(\d+)\s*""".r
+  private lazy val regexForNonDup = """(?i)\s*roll\s+(\d+)n(\d+)\s*""".r
 
   /** Processes an `input` to return sequential string values
     * representing order.
@@ -23,7 +23,7 @@ class DiceBot(val random: Random) {
           "the 'input' value cannot be null.")
       case regex(count, max) =>
         Some(makeOrderString(count.toInt, max.toInt))
-      case regex_for_non_dup(count, max) =>
+      case regexForNonDup(count, max) =>
         Some("1")
       case _ =>
         None
