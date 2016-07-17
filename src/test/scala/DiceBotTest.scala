@@ -69,23 +69,23 @@ class DiceBotTest extends FunSuite {
       }
   }
 
-  test("process returns correct result.") {
-    // Fixture setup
-    val random = new Random(1)
-
-    val sut = new DiceBot(new Random(1))
-
-    val orderString: String =
-      (1 to 3)
-        .map(_ => random.nextInt(100) + 1)
-        .mkString(", ")
-
-    val expected = Some(orderString)
-
-    // Exercise system
-    val actual = sut.process("roll 3d100")
-
-    // Verify outcome
-    assert(expected == actual)
-  }
+//  test("process returns correct result.") {
+//    // Fixture setup
+//    val random = new Random(1)
+//
+//    val sut = new DiceBot(new Random(1))
+//
+//    val orderString: String =
+//      (1 to 3)
+//        .map(_ => random.nextInt(100) + 1)
+//        .mkString(", ")
+//
+//    val expected = Some(orderString)
+//
+//    // Exercise system
+//    val actual = sut.process("roll 3d100")
+//
+//    // Verify outcome
+//    assert(expected == actual)
+//  }
 }
