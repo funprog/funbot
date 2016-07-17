@@ -32,19 +32,19 @@ class DiceBot(val random: Random) {
     }
   }
 
-  def parseInput(input: String): (Boolean, Int, String, String) = input match {
+  private def parseInput(input: String): (Boolean, Int, String, String) = input match {
     case null => throw new IllegalArgumentException("the 'input' value cannot be null.")
     case regex(count, method, max) => (true, count.toInt, method, max)
     case _ => (false, 0, "", "")
   }
 
-  def makeDiceFace(option: String): List[String] = option match {
+  private def makeDiceFace(option: String): List[String] = option match {
     case regexInteger(str) => (1 to str.toInt).toList.map(_.toString)
     case _ => (1 to 6).toList.map(_.toString)
   }
 
   @annotation.tailrec
-  final def rollNormalDice(dice: List[String], count: Int, result: List[String]): List[String] = {
+  private def rollNormalDice(dice: List[String], count: Int, result: List[String]): List[String] = {
     if (count == 0) {
       result
     } else {
@@ -54,7 +54,7 @@ class DiceBot(val random: Random) {
   }
 
   @annotation.tailrec
-  final def rollNonDupDice(dice: List[String], count: Int, result: List[String]): List[String] = {
+  private def rollNonDupDice(dice: List[String], count: Int, result: List[String]): List[String] = {
     if (count == 0 || dice == Nil) {
       result
     } else {
