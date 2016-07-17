@@ -5,7 +5,7 @@
  2. To get proceed, at least 3 approvals(👍) from the members are required.
 
 ## Pull Request Merging Convention
- 1. All the comments SHOULD to addressed prior to merging.
+ 1. All the comments SHOULD be addressed prior to merging.
   - To express a refusal on merging, the reviewer SHOULD emoji 👎 on the description.
   - And release the 👎 emoji when solved so that at the merging, there SHOULD be no 👎 left. 
  2. At least 3 reviewers SHOULD approve.
