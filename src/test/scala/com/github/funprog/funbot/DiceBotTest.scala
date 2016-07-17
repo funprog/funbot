@@ -61,23 +61,22 @@ class DiceBotTest extends FunSuite {
       }
   }
 
-//  test("process returns correct result.") {
-//    // Fixture setup
-//    val random = new Random(1)
-//
-//    val sut = new DiceBot(new Random(1))
-//
-//    val orderString: String =
-//      (1 to 3)
-//        .map(_ => random.nextInt(100) + 1)
-//        .mkString(", ")
-//
-//    val expected = Some(orderString)
-//
-//    // Exercise system
-//    val actual = sut.process("roll 3d100")
-//
-//    // Verify outcome
-//    assert(expected == actual)
-//  }
+  Seq(
+    ("roll 2d2", List("1, 1", "1, 2", "2, 1", "2, 2")),
+    ("RoLl 1d2", List("1", "2")),
+    ("roLL 2D3", List("1, 1", "1, 2", "1, 3", "2, 1", "2, 2", "2, 3", "3, 1", "3, 2", "3, 3")),
+    ("roll 2n2", List("1, 2", "2, 1")),
+    ("RoLl 1n2", List("1", "2")),
+    ("roLL 2N3", List("1, 2", "1, 3", "2, 1", "2, 3", "3, 1", "3, 2"))
+  ).foreach {
+    case (input, result) =>
+      test(s"process with input '$input' returns correct result '$result'.") {
+        val expected = result.map(Some(_))
+        val sut = new DiceBot(new Random)
+
+        val actual = sut.process(input)
+
+        assert(expected contains actual)
+      }
+  }
 }
