@@ -23,7 +23,7 @@ class DiceBot(val random: Random) {
     if (valid) {
       val dice = makeDiceFace(faceOption)
       val result = method.toLowerCase match {
-        case "d" => rollNormalDice(dice, count, List())
+        case "d" => rollNormalDice(dice, count)
         case "n" => rollNonDupDice(dice, count, List())
       }
       Some(result.mkString(", "))
@@ -43,14 +43,8 @@ class DiceBot(val random: Random) {
     case _ => (1 to 6).toList.map(_.toString)
   }
 
-  @annotation.tailrec
-  private def rollNormalDice(dice: List[String], count: Int, result: List[String]): List[String] = {
-    if (count == 0) {
-      result
-    } else {
-      val value = Random.shuffle(dice).take(1)
-      rollNormalDice(dice, count - 1, result ++ value)
-    }
+  private def rollNormalDice(dice: List[String], count: Int): List[String] = {
+    (1 to count).map(_ => dice(random.nextInt(dice.length))).toList
   }
 
   @annotation.tailrec
