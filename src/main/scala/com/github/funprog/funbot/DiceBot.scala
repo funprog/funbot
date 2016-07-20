@@ -49,11 +49,13 @@ class DiceBot(val random: Random) {
 
   @annotation.tailrec
   private def rollNonDupDice(dice: List[String], count: Int, result: List[String]): List[String] = {
+    def pop(pos: Int, list: List[String]) = (list(pos), list.take(pos) ::: list.drop(pos+1))
+
     if (count == 0 || dice == Nil) {
       result
     } else {
-      val (value, newDice) = Random.shuffle(dice).splitAt(1)
-      rollNonDupDice(newDice, count - 1, result ++ value)
+      val (value, newDice) = pop(random.nextInt(dice.length), dice)
+      rollNonDupDice(newDice, count - 1, result :+ value)
     }
   }
 }
