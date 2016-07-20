@@ -3,8 +3,6 @@ package com.github.funprog.funbot
 import scala.util.Random
 
 class DiceBot(val random: Random) {
-  require(random != null, "the 'random' value cannot be null.")
-
   private lazy val regex = """(?i)\s*roll\s+(\d+)([d|n])(\d+)\s*""".r
   private lazy val regexInteger = """(?i)(\d+)\s*""".r
 
@@ -33,7 +31,6 @@ class DiceBot(val random: Random) {
   }
 
   private def parseInput(input: String): (Boolean, Int, String, String) = input match {
-    case null => throw new IllegalArgumentException("the 'input' value cannot be null.")
     case regex(count, method, max) => (true, count.toInt, method, max)
     case _ => (false, 0, "", "")
   }
