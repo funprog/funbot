@@ -24,7 +24,7 @@ class DiceBot(val random: Random) {
       val dice = makeDiceFace(faceOption)
       val result = method.toLowerCase match {
         case "d" => rollNormalDice(dice, count)
-        case "n" => rollNonDupDice(dice, count, List())
+        case "n" => rollNonDupDice(dice, count)
       }
       Some(result.mkString(", "))
     } else {
@@ -47,15 +47,7 @@ class DiceBot(val random: Random) {
     (1 to count).map(_ => dice(random.nextInt(dice.length))).toList
   }
 
-  @annotation.tailrec
-  private def rollNonDupDice(dice: List[String], count: Int, result: List[String]): List[String] = {
-    def pop(pos: Int, list: List[String]) = (list(pos), list.take(pos) ::: list.drop(pos+1))
-
-    if (count == 0 || dice == Nil) {
-      result
-    } else {
-      val (value, newDice) = pop(random.nextInt(dice.length), dice)
-      rollNonDupDice(newDice, count - 1, result :+ value)
-    }
+  private def rollNonDupDice(dice: List[String], count: Int): List[String] = {
+    random.shuffle(dice).take(count)
   }
 }

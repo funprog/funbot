@@ -81,19 +81,20 @@ class DiceBotTest extends FunSuite {
     assert(expected == actual)
   }
 
-  Seq(
-    ("roll 2n2", List("1, 2", "2, 1")),
-    ("roll 1n2", List("1", "2")),
-    ("roll 2n3", List("1, 2", "1, 3", "2, 1", "2, 3", "3, 1", "3, 2"))
-  ).foreach {
-    case (input, result) =>
-      test(s"process with input '$input'' should be a candidate for '${result.mkString("List(\"", "\", \"", "\")")}'.") {
-        val expected = result.map(Some(_))
-        val sut = new DiceBot(new Random)
+  test("process returns correct result for non dulplicated.") {
+    // Fixture setup
+    val random = new Random(1)
 
-        val actual = sut.process(input)
+    val sut = new DiceBot(new Random(1))
 
-        assert(expected contains actual)
-      }
+    val testDice = (1 to 100).toList.map(_.toString)
+    val result = random.shuffle(testDice).take(3).mkString(", ")
+    val expected = Some(result)
+
+    // Exercise system
+    val actual = sut.process("roll 3n100")
+
+    // Verify outcome
+    assert(expected == actual)
   }
 }
