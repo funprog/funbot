@@ -81,7 +81,7 @@ class DiceBotTest extends FunSuite {
     assert(expected == actual)
   }
 
-  test("process returns correct result for non dulplicated.") {
+  test("process returns correct result for non-duplicate.") {
     // Fixture setup
     val random = new Random(1)
 
