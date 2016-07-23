@@ -51,7 +51,7 @@ class DiceBotTest extends FunSuite {
     ("roLL 1N1", "1")
   ).foreach {
     case (input, result) =>
-      test(s"process with input '$input' returns correct result '$result'.") {
+      test(s"process with input '$input' is case-insensitive.") {
         val expected = Some(result)
         val sut = new DiceBot(new Random)
 
@@ -81,7 +81,7 @@ class DiceBotTest extends FunSuite {
     assert(expected == actual)
   }
 
-  test("process returns correct result for non dulplicated.") {
+  test("process returns correct result for non-duplicate.") {
     // Fixture setup
     val random = new Random(1)
 
