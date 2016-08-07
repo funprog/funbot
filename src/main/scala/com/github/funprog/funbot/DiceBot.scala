@@ -4,7 +4,9 @@ import scala.util.Random
 
 class DiceBot(val random: Random) {
   private lazy val regex = """(?i)\s*roll\s+(\d+)([d|n])(\d+)\s*""".r
+  private lazy val regexLotto = """(?i)\s*roll\s+(\d+)(lotto)\s*""".r
   private lazy val regexInteger = """(?i)(\d+)\s*""".r
+
 
   /** Processes an `input` to return sequential string values
     * representing order.
@@ -23,6 +25,7 @@ class DiceBot(val random: Random) {
       val result = method.toLowerCase match {
         case "d" => rollNormalDice(dice, count)
         case "n" => rollNonDupDice(dice, count)
+        case "lotto" => rollForNewLife(count, List.empty)
       }
       Some(result.mkString(", "))
     } else {
@@ -31,6 +34,7 @@ class DiceBot(val random: Random) {
   }
 
   private def parseInput(input: String): (Boolean, Int, String, String) = input match {
+    case regexLotto(count, method) => (true, count.toInt, method, "")
     case regex(count, method, max) => (true, count.toInt, method, max)
     case _ => (false, 0, "", "")
   }
@@ -46,5 +50,15 @@ class DiceBot(val random: Random) {
 
   private def rollNonDupDice(dice: List[String], count: Int): List[String] = {
     random.shuffle(dice).take(count)
+  }
+  private def rollForNewLife(count: Int, result: List[String]): List[String] = {
+    if (count == 0) {
+      result
+    } else {
+      val `newLife and bonus` = random.shuffle((1 to 45).toList.map(_.toString)).take(7)
+      val bonus = `newLife and bonus`.head
+      val newLifeNumber = `newLife and bonus`.tail.mkString(" ")
+      rollForNewLife(count - 1, result ::: List(s"\n[$newLifeNumber] and bonus(#$bonus)"))
+    }
   }
 }

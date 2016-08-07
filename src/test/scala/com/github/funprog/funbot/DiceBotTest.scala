@@ -5,6 +5,7 @@ import org.scalatest.FunSuite
 import scala.util.Random
 
 class DiceBotTest extends FunSuite {
+
   Seq(
     "invalid string",
     "",
@@ -97,4 +98,34 @@ class DiceBotTest extends FunSuite {
     // Verify outcome
     assert(expected == actual)
   }
+
+  Seq("roll 1lotto",
+    "roll 3LOTTO",
+    "roll 4Lotto",
+    "roll 2loTTo").foreach(
+    input => {
+      test(s"process with '$input' test") {
+        val dicebotRandom = new DiceBot(new Random)
+
+        val actual = dicebotRandom.process(input)
+
+        assert(classOf[Some[String]] == actual.getClass)
+      }
+    })
+
+  Seq("roll lotto",
+    "roll 3lotto1",
+    "roll lotto12"
+  ).foreach(
+    input => {
+      test(s"process with '$input' test") {
+        val dicebotRandom = new DiceBot(new Random)
+
+        val actual = dicebotRandom.process(input)
+
+        assert(actual == None)
+      }
+    }
+  )
+
 }
